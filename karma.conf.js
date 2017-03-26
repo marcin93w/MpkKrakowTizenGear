@@ -19,6 +19,12 @@ module.exports = function karmaConfig(config) {
     client: {
       mocha: {}
     },
+    customLaunchers: {
+      Chrome_with_debugging: {
+        base: 'Chrome',
+        flags: ['--remote-debugging-port=9222']
+      }
+    },
     singleRun: true,
     reporters: ['mocha', 'coverage', 'junit'],
     mochaReporter: {

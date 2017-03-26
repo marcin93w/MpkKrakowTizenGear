@@ -9,15 +9,22 @@
  */
 /* Populated by react-webpack-redux:reducer */
 import { combineReducers } from 'redux';
-import { FETCH_STOPS } from '../actions';
+import { FETCH_STOPS, ApiCallStatus } from '../actions';
 
-function stops(state = [], action) {
+function stopsList(state = [], action) {
     if(action.type == FETCH_STOPS) {
-        return action.location;
+        switch(action.status) {
+            case ApiCallStatus.LOADING:
+                return Object.assign({}, state, { isLoading: true, location: action.location });
+            case ApiCallStatus.ERROR:
+                return Object.assign({}, state, { isLoading: false, error: action.error });
+            case ApiCallStatus.SUCCESS:
+                return Object.assign({}, state, { isLoading: false, stops: action.stops });
+        }
     }
 
     return state;
 }
 
-const reducer = combineReducers({stops});
+const reducer = combineReducers({stopsList});
 module.exports = reducer;

@@ -9,7 +9,15 @@
  */
 /* Populated by react-webpack-redux:reducer */
 import { combineReducers } from 'redux';
+import { FETCH_STOPS } from '../actions';
 
-const reducers = {};
-const combined = combineReducers(reducers);
-module.exports = combined;
+function stops(state = [], action) {
+    if(action.type == FETCH_STOPS) {
+        return action.location;
+    }
+
+    return state;
+}
+
+const reducer = combineReducers({stops});
+module.exports = reducer;

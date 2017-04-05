@@ -1,9 +1,13 @@
-import { createStore } from 'redux';
 import reducers from '../reducers';
+import thunkMiddleware from 'redux-thunk'
+import createLogger from 'redux-logger'
+import { createStore, applyMiddleware } from 'redux'
+import { selectSubreddit, fetchPosts } from './actions'
+
 
 function reduxStore(initialState) {
-  const store = createStore(reducers, initialState,
-    window.devToolsExtension && window.devToolsExtension());
+  const loggerMiddleware = createLogger()
+  const store = createStore(reducers, initialState, applyMiddleware(thunkMiddleware, loggerMiddleware));
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

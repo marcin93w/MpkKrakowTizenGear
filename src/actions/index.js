@@ -1,20 +1,17 @@
 /* eslint-disable import/newline-after-import */
-/* Exports all the actions from a single point.
+/* Exports all the actions from a single point.*/
 
-Allows to import actions like so:
+import fetch from 'isomorphic-fetch';
 
-import {action1, action2} from '../actions/'
-*/
-/* Populated by react-webpack-redux:action */
 export const FETCH_STOPS = 'FETCH_STOPS';
 
 export const ApiCallStatus = {
   LOADING: 'LOADING',
   SUCCESS: 'SUCCESS',
   ERROR: 'ERROR'
-}
+};
 
-export function fetchStops(lon, lat) {
+export function requestStops(lon, lat) {
     return {
         type: FETCH_STOPS,
         status: ApiCallStatus.LOADING,
@@ -38,5 +35,14 @@ export function receiveStopsFetchError(error) {
         type: FETCH_STOPS,
         status: ApiCallStatus.ERROR,
         error: error
+    };
+}
+
+export function fetchStops(lon, lat) {
+    return dispatch => {
+        dispatch(requestStops(lon, lat))
+        return fetch(`http://46.101.255.97/api/stops?lon=${lon}&lat=${lat}`)
+            .then(response => response.json())
+            .then(json => dispatch(receiveStops(json)));
     };
 }

@@ -1,13 +1,13 @@
 import React from 'react';
-import YeomanImage from './YeomanImage';
 import './app.css';
+import StopsList from '../containers/StopsList.js'
 
 class AppComponent extends React.Component {
 
   render() {
     return (
       <div className="index">
-        <p>Hello world!</p>
+        <StopsList />
       </div>
     );
   }

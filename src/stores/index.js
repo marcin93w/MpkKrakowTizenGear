@@ -1,11 +1,27 @@
 import reducers from '../reducers';
 import thunkMiddleware from 'redux-thunk'
-import createLogger from 'redux-logger'
+import { createLogger } from 'redux-logger'
 import { createStore, applyMiddleware } from 'redux'
-import { selectSubreddit, fetchPosts } from './actions'
+import { selectSubreddit, fetchPosts } from '../actions'
 
 
 function reduxStore(initialState) {
+
+  initialState = {
+    stopsList: {
+      stops: [
+        {
+          id: 1,
+          name: "Przystanek"
+        },
+        {
+          id: 2,
+          name: "Inny przystanek"
+        }
+      ]
+    }
+  }
+
   const loggerMiddleware = createLogger()
   const store = createStore(reducers, initialState, applyMiddleware(thunkMiddleware, loggerMiddleware));
 

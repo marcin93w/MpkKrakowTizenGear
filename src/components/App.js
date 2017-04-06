@@ -1,5 +1,5 @@
 import React from 'react';
-import './app.css';
+import './app.scss';
 import StopsList from '../containers/StopsList.js'
 
 class AppComponent extends React.Component {

@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #fff;
+}
+
+#app {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: #222;
+}
+
+.info-panel {
+  width: 80%;
+  margin: 100px auto;
+  padding: 10px;
+  background: #333;
+  border: 1px solid #000;
+  border-radius: 2px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.stops-list {
+  width: 80%;
+  margin: 35px;
+  font-size: 20px;
+  word-wrap: no-break;
+  color: #999;
+  .stop-distance {
+    color: #fff;
+  }
+  ul {
+    list-style: none;
+    li {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+}
+
+/*
+.index {
+  width: 80%;
+  margin: 100px auto;
+  padding: 10px;
+  background: #333;
+  border: 1px solid #000;
+  border-radius: 2px;
+  text-align: center;
+  box-sizing: border-box;
+}*/

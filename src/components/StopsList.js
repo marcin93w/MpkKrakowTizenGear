@@ -7,28 +7,35 @@ class StopsList extends React.Component {
 
     if (isLoading) {
       return (
-        <h2>Loading...</h2>
+        <div className="info-panel">
+          <h2>Loading...</h2>
+        </div>
       );
     }
     if(error) {
       return (
-        <h3>Unable to load: {error}</h3>
+        <div className="info-panel">
+          <h3>Unable to load: {error}</h3>
+        </div>
       )
     }
 
     return (
-      <ul>
-        {stops.map(stop =>
-          <Stop key={stop.id} {...stop} onClick={() => onStopClick(stop.id)} />
-        ) }
-      </ul>
+      <div className="stops-list">
+        <ul>
+          {stops.map(stop =>
+            <Stop key={stop.stopGroupId} {...stop} onClick={() => onStopClick(stop.id)} />
+          ) }
+        </ul>
+      </div>
     );
   }
 }
 
 StopsList.propTypes = {
   stops: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    stopGroupId: PropTypes.number.isRequired,
+    distance: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired
   }).isRequired).isRequired,
   onStopClick: PropTypes.func.isRequired,

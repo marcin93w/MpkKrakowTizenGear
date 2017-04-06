@@ -1,9 +1,7 @@
 import React, { PropTypes } from 'react'
 
 const Stop = ({ onClick, name }) => (
-  <li
-    onClick={onClick}
-  >
+  <li onClick={onClick}>
     {name}
   </li>
 )

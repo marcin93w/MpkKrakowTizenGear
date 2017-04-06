@@ -1,14 +1,13 @@
 import { connect } from 'react-redux'
-import { } from '../actions'
+import { fetchStops } from '../actions'
 import StopsListComponent from '../components/StopsList'
 
 const mapStateToProps = (state) => {
-  return {
-    stops: state.stopsList.stops
-  }
+  return state.stopsList;
 }
 
 const mapDispatchToProps = (dispatch) => {
+  dispatch(fetchStops(20,50));
   return {
     onStopClick: (id) => {
       //dispatch(toggleTodo(id))

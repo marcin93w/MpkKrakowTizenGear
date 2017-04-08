@@ -11,14 +11,10 @@ export const ApiCallStatus = {
   ERROR: 'ERROR'
 };
 
-export function requestStops(lon, lat) {
+export function requestStops() {
   return {
     type: FETCH_STOPS,
-    status: ApiCallStatus.LOADING,
-    location: {
-      lon,
-      lat
-    }
+    status: ApiCallStatus.LOADING
   };
 }
 
@@ -38,14 +34,25 @@ export function receiveStopsFetchError(error) {
   };
 }
 
-export function fetchStops(lon, lat) {
+export function fetchStops() {
   return (dispatch) => {
-    dispatch(requestStops(lon, lat));
-    return fetch(`http://46.101.255.97/api/stops?lon=${lon}&lat=${lat}`)
-            .then(response => response.json())
-            .then(json => dispatch(receiveStops(json)))
-            .catch(error => dispatch(receiveStopsFetchError(error.toString())));
+    dispatch(requestStops());
+
+    return getCurrentLocation()
+      .then(coords => fetch(`http://46.101.255.97/api/stops?lon=${coords.longitude}&lat=${coords.latitude}`))
+      .then(response => response.json())
+      .then(json => dispatch(receiveStops(json)))
+      .catch(error => dispatch(receiveStopsFetchError(error.message || error.toString())));
   };
+}
+
+function getCurrentLocation() {
+  let promise = new Promise((resolve, reject) => {
+    //var options = {enableHighAccuracy: true, maximumAge: 600000, timeout: 600000};
+    navigator.geolocation.getCurrentPosition(pos => resolve(pos.coords), reject);
+  });
+
+  return promise;
 }
 
 export const CHANGE_STOP = "CHANGE_STOP";

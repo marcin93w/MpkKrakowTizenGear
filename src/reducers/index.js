@@ -5,7 +5,7 @@ function stopsList(state = [], action) {
     if (action.type == FETCH_STOPS) {
         switch (action.status) {
             case ApiCallStatus.LOADING:
-                return Object.assign({}, state, { isLoading: true, location: action.location });
+                return Object.assign({}, state, { isLoading: true });
             case ApiCallStatus.ERROR:
                 return Object.assign({}, state, { isLoading: false, error: action.error });
             case ApiCallStatus.SUCCESS:

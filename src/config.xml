@@ -4,9 +4,11 @@
     <tizen:application id="ryE5gqeB2w.MpkKrakow" package="ryE5gqeB2w" required_version="2.3.2"/>
     <content src="index.html"/>
     <feature name="http://tizen.org/feature/screen.size.all"/>
+    <feature name="http://tizen.org/feature/location.gps"/>
     <icon src="icon.png"/>
     <name>MpkKrakow</name>
     <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
     <tizen:privilege name="http://tizen.org/privilege/internet"/>
+    <tizen:privilege name="http://tizen.org/privilege/location"/>
     <tizen:profile name="wearable"/>
 </widget>

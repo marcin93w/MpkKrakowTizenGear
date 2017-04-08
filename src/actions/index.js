@@ -47,3 +47,12 @@ export function fetchStops(lon, lat) {
             .catch(error => dispatch(receiveStopsFetchError(error.toString())));
   };
 }
+
+export const SELECT_STOP = "SELECT_STOP";
+
+export function selectStop(stopGroupId) {
+  return {
+    type: SELECT_STOP,
+    stopGroupId: stopGroupId
+  }
+}

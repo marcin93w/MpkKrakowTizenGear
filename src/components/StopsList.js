@@ -3,7 +3,7 @@ import Stop from './Stop';
 
 class StopsList extends React.Component {
   render() {
-    const { stops, onStopClick, isLoading, error } = this.props;
+    const { prevStop, nextStop, secPrevStop, secNextStop, selectedStop, onStopClick, isLoading, error } = this.props;
 
     if (isLoading) {
       return (
@@ -21,23 +21,47 @@ class StopsList extends React.Component {
     }
 
     return (
-      <div className="stops-list">
-        <ul>
-          {stops.map(stop =>
-            <Stop key={stop.stopGroupId} {...stop} onClick={() => onStopClick(stop.id)} />
-          ) }
-        </ul>
+      <div className="stops-list-container">
+        <div className="prev-stop second">
+          {secPrevStop &&
+            <Stop key={secPrevStop.stopGroupId} {...secPrevStop} onClick={() => onStopClick(secPrevStop.stopGroupId)} />
+          }
+        </div>
+        <div className="prev-stop">
+          {prevStop &&
+            <Stop key={prevStop.stopGroupId} {...prevStop} onClick={() => onStopClick(prevStop.stopGroupId)} />
+          }
+        </div>
+        <div className="selected-stop">
+          <Stop key={selectedStop.stopGroupId} {...selectedStop} onClick={() => onStopClick(selectedStop.stopGroupId)} />
+        </div>
+        <div className="next-stop">
+          {nextStop &&
+            <Stop key={nextStop.stopGroupId} {...nextStop} onClick={() => onStopClick(nextStop.stopGroupId)} />
+          }
+        </div>
+        <div className="next-stop second">
+          {secNextStop &&
+            <Stop key={secNextStop.stopGroupId} {...secNextStop} onClick={() => onStopClick(secNextStop.stopGroupId)} />
+          }
+        </div>
       </div>
     );
   }
 }
 
-StopsList.propTypes = {
-  stops: PropTypes.arrayOf(PropTypes.shape({
+let stopShape = PropTypes.shape({
     stopGroupId: PropTypes.number.isRequired,
     distance: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired
-  }).isRequired).isRequired,
+  })
+
+StopsList.propTypes = {
+  secPrevStop: stopShape,
+  prevStop: stopShape,
+  selectedStop: stopShape.isRequired,
+  nextStop: stopShape,
+  secNextStop: stopShape,
   onStopClick: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   error: PropTypes.string

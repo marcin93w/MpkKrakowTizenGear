@@ -1,3 +1,6 @@
+$screenWidth: 360px;
+$screenHeight: 360px;
+
 body {
   margin: 0;
   padding: 0;
@@ -8,8 +11,8 @@ body {
 
 #app {
   position: absolute;
-  width: 360px;
-  height: 360px;
+  width: $screenWidth;
+  height: $screenHeight;
   border-radius: 50%;
   background: #222;
 }
@@ -25,33 +28,40 @@ body {
   box-sizing: border-box;
 }
 
-.stops-list {
-  width: 80%;
-  margin: 35px;
-  font-size: 20px;
-  word-wrap: no-break;
+.stops-list-container {
+  margin: 60px 20px;  
   color: #999;
-  .stop-distance {
-    color: #fff;
+
+  .stop-name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
-  ul {
-    list-style: none;
-    li {
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
+
+  .prev-stop, .next-stop {
+    font-size: 24px;
+    white-space: nowrap;
+    margin: 15px 15px;
+    .stop-distance {
+      display: none;
     }
+    height: 28px;
+  }
+
+  .second {
+    margin: 10px 40px;
+  }
+
+  .selected-stop {
+    white-space: nowrap;
+    font-size: 32px;
+    margin: 25px 0;
+    color: #fff;
+    background-color: #444;
+  }
+
+  .stop-distance {
+    font-size: 18px;
+    margin-left: 20px;
   }
 }
-
-/*
-.index {
-  width: 80%;
-  margin: 100px auto;
-  padding: 10px;
-  background: #333;
-  border: 1px solid #000;
-  border-radius: 2px;
-  text-align: center;
-  box-sizing: border-box;
-}*/

@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react'
 
 const Stop = ({ onClick, name, stopGroupId, distance }) => (
-  <li onClick={onClick}>
-    <span className="stop-distance">{(distance/1000).toFixed(2)} km</span> {name}
-  </li>
+    <div className="stop" onClick={onClick}>
+      <div className="stop-name">{name}</div> 
+      <div className="stop-distance">Distance: {(distance/1000).toFixed(2)} km</div>
+    </div>
 )
 
 Stop.propTypes = {

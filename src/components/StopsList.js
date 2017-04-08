@@ -63,6 +63,8 @@ StopsList.propTypes = {
   nextStop: stopShape,
   secNextStop: stopShape,
   onStopClick: PropTypes.func.isRequired,
+  //onPrevSelected: PropTypes.func.isRequired,
+  //onNextSelected: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   error: PropTypes.string
 };

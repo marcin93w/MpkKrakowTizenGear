@@ -48,11 +48,18 @@ export function fetchStops(lon, lat) {
   };
 }
 
-export const SELECT_STOP = "SELECT_STOP";
+export const CHANGE_STOP = "CHANGE_STOP";
 
-export function selectStop(stopGroupId) {
+export function selectPrevStop() {
   return {
-    type: SELECT_STOP,
-    stopGroupId: stopGroupId
+    type: CHANGE_STOP,
+    direction: -1
+  }
+}
+
+export function selectNextStop() {
+  return {
+    type: CHANGE_STOP,
+    direction: 1
   }
 }

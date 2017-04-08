@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { FETCH_STOPS, ApiCallStatus, SELECT_STOP } from '../actions';
+import { FETCH_STOPS, ApiCallStatus, CHANGE_STOP } from '../actions';
 
 function stopsList(state = [], action) {
     if (action.type == FETCH_STOPS) {
@@ -12,8 +12,18 @@ function stopsList(state = [], action) {
                 return Object.assign({}, state, { isLoading: false, stops: action.stops });
         }
     }
-    if (action.type == SELECT_STOP) {
-        return Object.assign({}, state, { selected: action.stopGroupId });
+    if (action.type == CHANGE_STOP) {
+        let selected = state.selected || 0;
+        if(action.direction > 0) {
+            if(selected < state.stops.length -1) {
+                selected++;
+            }
+        } else {
+            if(selected > 0) {
+                selected--;
+            }
+        }
+        return Object.assign({}, state, { selected: selected });
     }
 
     return state;

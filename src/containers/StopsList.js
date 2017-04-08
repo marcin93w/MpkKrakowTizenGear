@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { fetchStops, selectStop } from '../actions'
+import { fetchStops, selectPrevStop, selectNextStop } from '../actions'
 import StopsListComponent from '../components/StopsList'
 
 const mapStateToProps = (state) => {
@@ -11,9 +11,7 @@ const mapStateToProps = (state) => {
 
   let stops = stopsList.stops;
   if (stops && stops.length > 0) {
-    
-    let selectedIndex = stops.findIndex(s => s.stopGroupId === stopsList.selected);
-    selectedIndex = selectedIndex == -1 ? 0 : selectedIndex;
+    let selectedIndex =stopsList.selected || 0;
     
     Object.assign(props, {
       selectedStop: stops[selectedIndex],
@@ -28,12 +26,41 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  dispatch(fetchStops(20,50));
+  initialize(dispatch);
   return {
-    onStopClick: (id) => {
-      dispatch(selectStop(id))
+    onStopClick: () => {
     }
   }
+}
+
+function initialize(dispatch) {
+  dispatch(fetchStops(20,50));
+
+  let onPrevSelected = () => dispatch(selectPrevStop());
+  let onNextSelected = () => dispatch(selectNextStop());
+  addKeyboradStering(onPrevSelected, onNextSelected);
+  addTizenWheelStering(onPrevSelected, onNextSelected);
+}
+
+function addKeyboradStering(onPrevSelected, onNextSelected) {
+  document.onkeypress = (event) => {
+    if(event.key === 'w') {
+      onPrevSelected();
+    } else if(event.key === 's') {
+      onNextSelected();
+    }
+  }
+}
+
+function addTizenWheelStering(onPrevSelected, onNextSelected) {
+  document.addEventListener("rotarydetent", (ev) => {
+    let direction = ev.detail.direction;
+    if(direction === 'CW') {
+      onNextSelected();
+    } else {
+      onPrevSelected();
+    }
+  });
 }
 
 const StopsList = connect(

@@ -5,6 +5,7 @@ class StopsSchedule extends React.Component {
     
     return (
       <div className="stops-list-container">
+        {this.props.match.params.stopGroupId}
       </div>
     );
   }

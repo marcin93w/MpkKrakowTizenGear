@@ -58,10 +58,16 @@ body {
     margin: 25px 0;
     color: #fff;
     background-color: #444;
+    
+    a {
+      text-decoration: none;
+      color:#fff; 
+    }
   }
 
   .stop-distance {
     font-size: 18px;
     margin-left: 20px;
   }
+
 }

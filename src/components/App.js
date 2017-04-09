@@ -11,7 +11,7 @@ class AppComponent extends React.Component {
       <HashRouter>
         <div className="index">
           <Switch>
-            <Route path="/schedule" component={StopSchedule} />
+            <Route path="/schedule/:stopGroupId" component={StopSchedule} />
             <Route path="/" component={StopsList} />
         </Switch>
         </div>

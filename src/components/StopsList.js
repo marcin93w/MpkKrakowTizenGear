@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Stop from './Stop';
+import {Link} from 'react-router-dom';
 
 class StopsList extends React.Component {
   render() {
@@ -33,7 +34,9 @@ class StopsList extends React.Component {
           }
         </div>
         <div className="selected-stop">
-          <Stop key={selectedStop.stopGroupId} {...selectedStop} onClick={() => onStopClick()} />
+          <Link to={"schedule/" + selectedStop.stopGroupId}>
+            <Stop key={selectedStop.stopGroupId} {...selectedStop} onClick={() => onStopClick()} />
+          </Link>
         </div>
         <div className="next-stop">
           {nextStop &&

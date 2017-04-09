@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { FETCH_STOPS, CHANGE_STOP } from '../actions/StopsList';
+import { FETCH_SCHEDULE } from '../actions/StopSchedule';
 import { ApiCallStatus } from '../actions/const';
 
 function stopsList(state = [], action) {
@@ -30,5 +31,20 @@ function stopsList(state = [], action) {
     return state;
 }
 
-const reducer = combineReducers({ stopsList });
+function departures(state = [], action) {
+    if (action.type == FETCH_SCHEDULE) {
+        switch (action.status) {
+            case ApiCallStatus.LOADING:
+                return Object.assign({}, state, { isLoading: true });
+            case ApiCallStatus.ERROR:
+                return Object.assign({}, state, { isLoading: false, error: action.error });
+            case ApiCallStatus.SUCCESS:
+                return Object.assign({}, state, { isLoading: false, departures: action.departures });
+        }
+    }
+
+    return state;
+}
+
+const reducer = combineReducers({ stopsList, departures });
 module.exports = reducer;

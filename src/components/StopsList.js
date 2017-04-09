@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 
 class StopsList extends React.Component {
   render() {
-    const { prevStop, nextStop, secPrevStop, secNextStop, selectedStop, onStopClick, isLoading, error } = this.props;
+    const { prevStop, nextStop, secPrevStop, secNextStop, selectedStop, isLoading, error } = this.props;
 
     if(isLoading || error) {
       return (
@@ -27,7 +27,7 @@ class StopsList extends React.Component {
         </div>
         <div className="selected-stop">
           <Link to={"schedule/" + selectedStop.stopGroupId}>
-            <Stop key={selectedStop.stopGroupId} {...selectedStop} onClick={() => onStopClick()} />
+            <Stop key={selectedStop.stopGroupId} {...selectedStop} />
           </Link>
         </div>
         <div className="next-stop">
@@ -57,7 +57,6 @@ StopsList.propTypes = {
   selectedStop: stopShape,
   nextStop: stopShape,
   secNextStop: stopShape,
-  onStopClick: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   error: PropTypes.string
 };

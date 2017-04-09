@@ -27,10 +27,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   initialize(dispatch);
-  return {
-    onStopClick: () => {
-    }
-  }
+  return {}
 }
 
 function initialize(dispatch) {

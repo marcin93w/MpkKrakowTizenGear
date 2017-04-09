@@ -1,14 +1,16 @@
 import { connect } from 'react-redux'
 import StopScheduleComponent from '../components/StopSchedule'
+import { fetchSchedule } from '../actions/StopSchedule'
 
 const mapStateToProps = (state) => {
-  let props = {
-  }
-  return props;
+  return state.departures || {};
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onInitialize: (stopGroupId) => {
+      dispatch(fetchSchedule(stopGroupId));
+    }
   }
 }
 

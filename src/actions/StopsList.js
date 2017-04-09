@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import { ApiCallStatus } from './const';
+import { ApiCallStatus, ApiUrl } from './const';
 
 export const FETCH_STOPS = 'FETCH_STOPS';
 
@@ -31,7 +31,7 @@ export function fetchStops() {
     dispatch(requestStops());
 
     return getCurrentLocation()
-      .then(coords => fetch(`http://46.101.255.97/api/stops?lon=${coords.longitude}&lat=${coords.latitude}`))
+      .then(coords => fetch(`${ApiUrl}stops?lon=${coords.longitude}&lat=${coords.latitude}`))
       .then(response => response.json())
       .then(json => dispatch(receiveStops(json)))
       .catch(error => dispatch(receiveStopsFetchError(error.message || error.toString())));

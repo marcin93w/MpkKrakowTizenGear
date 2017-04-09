@@ -5,3 +5,5 @@ export const ApiCallStatus = {
   SUCCESS: 'SUCCESS',
   ERROR: 'ERROR'
 };
+
+export const ApiUrl = 'http://46.101.255.97/api/';

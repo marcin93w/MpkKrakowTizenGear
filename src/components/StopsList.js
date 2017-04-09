@@ -1,23 +1,15 @@
 import React, { PropTypes } from 'react';
 import Stop from './Stop';
+import InfoPanel from './InfoPanel';
 import {Link} from 'react-router-dom';
 
 class StopsList extends React.Component {
   render() {
     const { prevStop, nextStop, secPrevStop, secNextStop, selectedStop, onStopClick, isLoading, error } = this.props;
 
-    if (isLoading) {
+    if(isLoading || error) {
       return (
-        <div className="info-panel">
-          <h2>Loading...</h2>
-        </div>
-      );
-    }
-    if(error) {
-      return (
-        <div className="info-panel">
-          <h3>Unable to load: {error}</h3>
-        </div>
+        <InfoPanel isLoading={isLoading} error={error} />
       )
     }
 
@@ -62,7 +54,7 @@ let stopShape = PropTypes.shape({
 StopsList.propTypes = {
   secPrevStop: stopShape,
   prevStop: stopShape,
-  selectedStop: stopShape.isRequired,
+  selectedStop: stopShape,
   nextStop: stopShape,
   secNextStop: stopShape,
   onStopClick: PropTypes.func.isRequired,

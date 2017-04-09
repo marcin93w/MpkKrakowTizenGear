@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { fetchStops, selectPrevStop, selectNextStop } from '../actions'
+import { fetchStops, selectPrevStop, selectNextStop } from '../actions/StopsList'
 import StopsListComponent from '../components/StopsList'
 
 const mapStateToProps = (state) => {

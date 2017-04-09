@@ -1,2 +1,7 @@
 /* eslint-disable import/prefer-default-export */
-/* Populated by react-webpack-redux:action */
+
+export const ApiCallStatus = {
+  LOADING: 'LOADING',
+  SUCCESS: 'SUCCESS',
+  ERROR: 'ERROR'
+};

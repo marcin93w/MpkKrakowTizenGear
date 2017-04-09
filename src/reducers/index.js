@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import { FETCH_STOPS, ApiCallStatus, CHANGE_STOP } from '../actions';
+import { FETCH_STOPS, CHANGE_STOP } from '../actions/StopsList';
+import { ApiCallStatus } from '../actions/const';
 
 function stopsList(state = [], action) {
     if (action.type == FETCH_STOPS) {

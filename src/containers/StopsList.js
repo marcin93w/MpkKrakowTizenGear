@@ -34,7 +34,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 function initialize(dispatch) {
-  dispatch(fetchStops(20,50));
+  dispatch(fetchStops());
 
   let onPrevSelected = () => dispatch(selectPrevStop());
   let onNextSelected = () => dispatch(selectNextStop());

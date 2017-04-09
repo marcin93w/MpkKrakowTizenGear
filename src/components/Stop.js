@@ -8,7 +8,7 @@ const Stop = ({ onClick, name, stopGroupId, distance }) => (
 )
 
 Stop.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   name: PropTypes.string.isRequired,
   stopGroupId: PropTypes.number.isRequired,
   distance: PropTypes.number.isRequired,

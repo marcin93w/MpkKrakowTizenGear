@@ -24,25 +24,25 @@ class StopsList extends React.Component {
       <div className="stops-list-container">
         <div className="prev-stop second">
           {secPrevStop &&
-            <Stop key={secPrevStop.stopGroupId} {...secPrevStop} onClick={() => onStopClick(secPrevStop.stopGroupId)} />
+            <Stop key={secPrevStop.stopGroupId} {...secPrevStop} />
           }
         </div>
         <div className="prev-stop">
           {prevStop &&
-            <Stop key={prevStop.stopGroupId} {...prevStop} onClick={() => onStopClick(prevStop.stopGroupId)} />
+            <Stop key={prevStop.stopGroupId} {...prevStop} />
           }
         </div>
         <div className="selected-stop">
-          <Stop key={selectedStop.stopGroupId} {...selectedStop} onClick={() => onStopClick(selectedStop.stopGroupId)} />
+          <Stop key={selectedStop.stopGroupId} {...selectedStop} onClick={() => onStopClick()} />
         </div>
         <div className="next-stop">
           {nextStop &&
-            <Stop key={nextStop.stopGroupId} {...nextStop} onClick={() => onStopClick(nextStop.stopGroupId)} />
+            <Stop key={nextStop.stopGroupId} {...nextStop} />
           }
         </div>
         <div className="next-stop second">
           {secNextStop &&
-            <Stop key={secNextStop.stopGroupId} {...secNextStop} onClick={() => onStopClick(secNextStop.stopGroupId)} />
+            <Stop key={secNextStop.stopGroupId} {...secNextStop} />
           }
         </div>
       </div>
@@ -63,8 +63,6 @@ StopsList.propTypes = {
   nextStop: stopShape,
   secNextStop: stopShape,
   onStopClick: PropTypes.func.isRequired,
-  //onPrevSelected: PropTypes.func.isRequired,
-  //onNextSelected: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   error: PropTypes.string
 };

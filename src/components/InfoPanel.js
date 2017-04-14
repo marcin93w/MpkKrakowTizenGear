@@ -11,7 +11,7 @@ const InfoPanel = ({ isLoading, error }) => {
     if(error) {
       return (
         <div className="info-panel">
-          <h3>Unable to load: {error}</h3>
+          <h3>{error}</h3>
         </div>
       )
     }

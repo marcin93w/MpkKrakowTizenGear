@@ -28,12 +28,9 @@ body {
   box-sizing: border-box;
 }
 
-.stops-list-container, .departures-list-container {
+.stops-list-container {
   margin: 60px 20px;  
   color: #999;
-}
-
-.stops-list-container {
 
   .stop-name {
     text-overflow: ellipsis;
@@ -76,9 +73,16 @@ body {
 }
 
 .departures-list-container {
+  margin: 60px 5px;  
+  color: #999;
+
+  ul {
+    padding: 0;
+  }
+
   li {
     list-style: none;
-    margin: 5px 0;
+    margin: 7px 0;
 
     div {
       font-size: 24px;
@@ -94,10 +98,31 @@ body {
     }
     .destination {
       font-size: 16px;
-      width: 100px;
+      width: 210px;
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow-x: hidden;
+    }
+  }
+
+  li:nth-child(1), li:nth-child(7) {
+    margin-left: 40px;
+    .destination {
+      width: 130px;
+    }
+  }
+
+  li:nth-child(2), li:nth-child(6) {
+    margin-left: 20px;
+    .destination {
+      width: 175px;
+    }
+  }
+
+  li:nth-child(3), li:nth-child(5) {
+    margin-left: 10px;
+    .destination {
+      width: 200px;
     }
   }
 }

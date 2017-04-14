@@ -16,7 +16,11 @@ const mapStateToProps = (state) => {
         departureTime: Math.round(((new Date(d.departureTime) - new Date()) / (1000*60)) + new Date().getTimezoneOffset())
     }));
     departures.sort((a,b) => a.departureTime - b.departureTime);
-    props.departures = departures.filter(dep => dep.departureTime > -20);
+    props.departures = departures.filter(dep => dep.departureTime > -2).slice(0, 7);
+    
+    if(props.departures.length === 0) {
+      props.error = 'No more departures today';
+    }
   }
   
   return props;

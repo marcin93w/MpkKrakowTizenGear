@@ -6,4 +6,4 @@ export const ApiCallStatus = {
   ERROR: 'ERROR'
 };
 
-export const ApiUrl = 'http://46.101.255.97/api/';
+export const ApiUrl = 'http://195.181.209.181/api/';

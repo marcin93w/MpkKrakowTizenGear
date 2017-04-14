@@ -28,9 +28,12 @@ body {
   box-sizing: border-box;
 }
 
-.stops-list-container {
+.stops-list-container, .departures-list-container {
   margin: 60px 20px;  
   color: #999;
+}
+
+.stops-list-container {
 
   .stop-name {
     text-overflow: ellipsis;
@@ -70,4 +73,31 @@ body {
     margin-left: 20px;
   }
 
+}
+
+.departures-list-container {
+  li {
+    list-style: none;
+    margin: 5px 0;
+
+    div {
+      font-size: 24px;
+      display: inline-block;
+      margin: 0 3px;
+      vertical-align: middle;
+    }
+    .time {
+      width: 80px;
+      text-align: right;
+      white-space: nowrap;
+      color: white;
+    }
+    .destination {
+      font-size: 16px;
+      width: 100px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow-x: hidden;
+    }
+  }
 }

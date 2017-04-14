@@ -8,6 +8,9 @@ function reduxStore(initialState) {
   initialState = {
     stopsList: {
       isLoading: true
+    },
+    departures: {
+      isLoading: true
     }
   }
 

@@ -21,6 +21,8 @@ const mapStateToProps = (state) => {
     if(props.departures.length === 0) {
       props.error = 'No more departures today';
     }
+  } else if (!props.error) {
+    props.error = 'No schedule found for selected stop';
   }
   
   return props;

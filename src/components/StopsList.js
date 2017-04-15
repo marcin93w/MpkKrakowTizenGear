@@ -2,8 +2,19 @@ import React, { PropTypes } from 'react';
 import Stop from './Stop';
 import InfoPanel from './InfoPanel';
 import {Link} from 'react-router-dom';
+import SteerageService from '../services/SteerageService';
 
 class StopsList extends React.Component {
+  componentDidMount() {
+    this.props.fetchStops();
+    this.steerageService = new SteerageService(this.props.onPrevSelected, this.props.onNextSelected);
+    this.steerageService.activate();
+  }
+
+  componentWillUnmount() {
+    this.steerageService.deactivate();
+  }
+
   render() {
     const { prevStop, nextStop, secPrevStop, secNextStop, selectedStop, isLoading, error } = this.props;
 
@@ -58,7 +69,10 @@ StopsList.propTypes = {
   nextStop: stopShape,
   secNextStop: stopShape,
   isLoading: PropTypes.bool.isRequired,
-  error: PropTypes.string
+  error: PropTypes.string,
+  fetchStops: PropTypes.func.isRequired,
+  onPrevSelected: PropTypes.func.isRequired,
+  onNextSelected: PropTypes.func.isRequired,
 };
 
 export default StopsList;

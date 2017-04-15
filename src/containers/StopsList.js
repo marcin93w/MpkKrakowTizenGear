@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 
   let stops = stopsList.stops;
   if (stops && stops.length > 0) {
-    let selectedIndex =stopsList.selected || 0;
+    let selectedIndex = stopsList.selected || 0;
     
     Object.assign(props, {
       selectedStop: stops[selectedIndex],
@@ -26,38 +26,11 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  initialize(dispatch);
-  return {}
-}
-
-function initialize(dispatch) {
-  dispatch(fetchStops());
-
-  let onPrevSelected = () => dispatch(selectPrevStop());
-  let onNextSelected = () => dispatch(selectNextStop());
-  addKeyboradStering(onPrevSelected, onNextSelected);
-  addTizenWheelStering(onPrevSelected, onNextSelected);
-}
-
-function addKeyboradStering(onPrevSelected, onNextSelected) {
-  document.onkeypress = (event) => {
-    if(event.key === 'w') {
-      onPrevSelected();
-    } else if(event.key === 's') {
-      onNextSelected();
-    }
-  }
-}
-
-function addTizenWheelStering(onPrevSelected, onNextSelected) {
-  document.addEventListener("rotarydetent", (ev) => {
-    let direction = ev.detail.direction;
-    if(direction === 'CW') {
-      onNextSelected();
-    } else {
-      onPrevSelected();
-    }
-  });
+  return {
+    fetchStops: () => dispatch(fetchStops()),
+    onPrevSelected: () => dispatch(selectPrevStop()),
+    onNextSelected: () => dispatch(selectNextStop())
+  };
 }
 
 const StopsList = connect(

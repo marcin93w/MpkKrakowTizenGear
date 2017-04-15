@@ -1,9 +1,17 @@
 import React, { PropTypes } from 'react';
 import InfoPanel from './InfoPanel';
+import SteerageService from '../services/SteerageService';
 
 class StopsSchedule extends React.Component {
   componentDidMount() {
     this.props.onInitialize(this.props.match.params.stopGroupId);
+    this.steerageService = new SteerageService();
+    this.steerageService.onBackPressedCallback = () => this.props.history.push('/');
+    this.steerageService.activate();
+  }
+
+  componentWillUnmount() {
+    this.steerageService.deactivate();
   }
 
   render() {

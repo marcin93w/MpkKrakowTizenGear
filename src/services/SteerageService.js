@@ -1,7 +1,8 @@
 export default class SteerageService {
-  constructor(onWheelPrevMoved, onWheelNextMoved) {
+  constructor(onWheelPrevMoved, onWheelNextMoved, onBackPressed) {
     this.onWheelPrevMoved = onWheelPrevMoved;
     this.onWheelNextMoved = onWheelNextMoved;
+    this.onBackPressed = onBackPressed;
   }
   
   set onWheelPrevMovedCallback(onPrev) {
@@ -12,21 +13,18 @@ export default class SteerageService {
     this.onWheelNextMoved = onNext;
   }
 
+  set onBackPressedCallback(onBackPress) {
+    this.onBackPressed = onBackPress;
+  }
+
   activate() {
     this.isActive = true;
+    this.activateWheelSteering();
+    this.activateBackButton();
+    this.activateDebugKeyboardSteering();
+  }
 
-    document.onkeypress = (event) => {
-      if(!this.isActive) {
-        return;
-      }
-
-      if(event.key === 'w') {
-        this.onWheelPrevMoved();
-      } else if(event.key === 's') {
-        this.onWheelNextMoved();
-      }
-    };
-    
+  activateWheelSteering() {
     document.addEventListener("rotarydetent", (ev) => {
       if(!this.isActive) {
         return;
@@ -39,6 +37,33 @@ export default class SteerageService {
         this.onWheelPrevMoved();
       }
     });
+  }
+
+  activateBackButton() {
+    document.addEventListener('tizenhwkey', (e) => {
+      if(!this.isActive) {
+        return;
+      }
+      if(e.keyName === "back") {
+        this.onBackPressed();
+      }
+    }); 
+  }
+
+  activateDebugKeyboardSteering() {
+    document.onkeypress = (event) => {
+      if(!this.isActive) {
+        return;
+      }
+
+      if(event.key === 'w') {
+        this.onWheelPrevMoved();
+      } else if(event.key === 's') {
+        this.onWheelNextMoved();
+      } else if(event.key === 'q') {
+        this.onBackPressed();
+      }
+    };
   }
 
   deactivate() {

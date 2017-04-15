@@ -6,8 +6,11 @@ import SteerageService from '../services/SteerageService';
 
 class StopsList extends React.Component {
   componentDidMount() {
-    this.props.fetchStops();
+    if(!this.props.selectedStop) {
+      this.props.fetchStops();
+    }
     this.steerageService = new SteerageService(this.props.onPrevSelected, this.props.onNextSelected);
+    this.steerageService.onBackPressedCallback = () => tizen.application.getCurrentApplication().exit();
     this.steerageService.activate();
   }
 
